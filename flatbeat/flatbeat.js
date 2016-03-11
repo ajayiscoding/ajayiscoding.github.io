@@ -9,7 +9,6 @@ var Flatbeat = (function() {
   var HOT_WATER = 151.36; // горячая вода
   var WATER_FALL = 21.90; // водоотвод
 
-  // Todo: что делать с тарифами?!
   var $lightTariff = getEl('.Payment-light--tariff');
   var $coldWaterTariff = getEl('.Payment-coldWater--tariff');
   var $hotWaterTariff = getEl('.Payment-hotWater--tariff');
@@ -42,9 +41,12 @@ var Flatbeat = (function() {
   var $lightTotalRub = getEl('.Payment-light--rub'); //
 
   var $commissionField = getEl('.Payment-commission'); // коммиссия при оплате жкх через банк
+  var $commissionRub = getEl('.Payment-commission--rub'); // коммиссия в рублях
 
   var $personsField = getEl('.Payment-rentPersons'); // человек снимает квартиру (по умолчанию 1)
   var $summaryPerPerson = getEl('.Payment-summaryPerPerson'); // сумма с человека
+
+  var $utilitiesRub = getEl('.Payment-utilities--rub');
 
   // кварплата в рублях
   var getRent = function () {
@@ -129,6 +131,8 @@ var Flatbeat = (function() {
       $hotWaterTotalRub.innerText = getHotWaterRub().toFixed(2);
       $waterfall.innerText = getWaterfall();
       $waterfallTotalRub.innerText = getWaterfallRub().toFixed(2);
+      $commissionRub.innerText = getCommission(getUtilitiesRub()).toFixed(2);
+      $utilitiesRub.innerText = getUtilitiesRub().toFixed(2);
 
       $summary.innerText = getTotal().toFixed(2);
       $summaryPerPerson.innerText = getTotalPerPerson().toFixed(2);
