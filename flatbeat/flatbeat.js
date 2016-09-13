@@ -4,10 +4,10 @@ var Flatbeat = (function() {
   };
 
   // тарифы
-  var LIGHT = 5.03; // свет
-  var COLD_WATER = 30.87; // холодная вода
-  var HOT_WATER = 151.36; // горячая вода
-  var WATER_FALL = 21.90; // водоотвод
+  var LIGHT = 5.38; // свет
+  var COLD_WATER = 33.03; // холодная вода
+  var HOT_WATER = 163.24; // горячая вода
+  var WATER_FALL = 23.43; // водоотвод
 
   var $lightTariff = getEl('.Payment-light--tariff');
   var $coldWaterTariff = getEl('.Payment-coldWater--tariff');
