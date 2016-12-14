@@ -45,8 +45,10 @@ var Flatbeat =
 /* 0 */
 /***/ function(module, exports) {
 
-	var Flatbeat = (function() {
-	  var getEl = function (selector) {
+	'use strict';
+
+	var Flatbeat = function () {
+	  var getEl = function getEl(selector) {
 	    return document.querySelector(selector);
 	  };
 
@@ -66,7 +68,6 @@ var Flatbeat =
 	  $coldWaterTariff.innerText = COLD_WATER;
 	  $hotWaterTariff.innerText = HOT_WATER;
 	  $waterfallTariff.innerText = WATER_FALL;
-
 
 	  // DOM Элементы
 	  var $rentField = getEl('.Payment-rent'); // плата за квартиру
@@ -96,19 +97,19 @@ var Flatbeat =
 	  var $utilitiesRub = getEl('.Payment-utilities--rub');
 
 	  // кварплата в рублях
-	  var getRent = function () {
+	  var getRent = function getRent() {
 	    return parseFloat($rentField.value || 0);
 	  };
 
 	  // Сколько холодной воды потратили в этом месяце
-	  var getColdWater = function () {
+	  var getColdWater = function getColdWater() {
 	    var coldWaterCurrent = $coldWaterCurrentField.value || 0;
 	    var coldWaterLast = $coldWaterLastField.value || 0;
 
 	    return coldWaterCurrent - coldWaterLast;
 	  };
 
-	  var getHotWater = function () {
+	  var getHotWater = function getHotWater() {
 	    var hotWaterCurrent = $hotWaterCurrentField.value || 0;
 	    var hotWaterLast = $hotWaterLastField.value || 0;
 
@@ -116,63 +117,62 @@ var Flatbeat =
 	  };
 
 	  // холодная вода в рублях
-	  var getColdWaterRub = function () {
+	  var getColdWaterRub = function getColdWaterRub() {
 	    var coldWater = getColdWater();
 
 	    return parseFloat(coldWater) * COLD_WATER;
 	  };
 
 	  // горячая вода в рублях
-	  var getHotWaterRub = function () {
+	  var getHotWaterRub = function getHotWaterRub() {
 	    var hotWater = getHotWater();
 
 	    return parseFloat(hotWater) * HOT_WATER;
 	  };
 
-	  var getWaterfall = function () {
+	  var getWaterfall = function getWaterfall() {
 	    return getColdWater() + getHotWater();
 	  };
 
 	  // водоотвод в рублях = (горячая вода за месяц + холодная за месяц) * коэф. водоотв.
-	  var getWaterfallRub = function () {
+	  var getWaterfallRub = function getWaterfallRub() {
 	    return getWaterfall() * WATER_FALL;
 	  };
 
-
 	  // свет в рублях
-	  var getLightRub = function () {
+	  var getLightRub = function getLightRub() {
 	    var lightCurrent = $lightCurrentField.value || 0;
 	    var lightLast = $lightLastField.value || 0;
 
-	    return (parseFloat(lightCurrent - lightLast) * LIGHT);
+	    return parseFloat(lightCurrent - lightLast) * LIGHT;
 	  };
 
 	  // % комиссия банка, если есть
-	  var getCommission = function (summ) {
+	  var getCommission = function getCommission(summ) {
 	    var commission = parseInt($commissionField.value) || 0;
 
 	    return commission * summ / 100;
 	  };
 
 	  // Услуги жкх = горячая + холодная + свет + водоотвод
-	  var getUtilitiesRub = function () {
+	  var getUtilitiesRub = function getUtilitiesRub() {
 	    return getColdWaterRub() + getHotWaterRub() + getWaterfallRub() + getLightRub();
 	  };
 
-	  var getTotal = function () {
+	  var getTotal = function getTotal() {
 	    var utilities = getUtilitiesRub();
 
 	    return getRent() + utilities + getCommission(utilities);
 	  };
 
-	  var getTotalPerPerson = function () {
+	  var getTotalPerPerson = function getTotalPerPerson() {
 	    var persons = parseInt($personsField.value) || 1;
 
 	    return parseFloat(getTotal() / persons);
 	  };
 
 	  return {
-	    updateTotal: function () {
+	    updateTotal: function updateTotal() {
 	      $lightTotalRub.innerText = getLightRub().toFixed(2);
 	      $coldWaterTotalRub.innerText = getColdWaterRub().toFixed(2);
 	      $hotWaterTotalRub.innerText = getHotWaterRub().toFixed(2);
@@ -184,11 +184,10 @@ var Flatbeat =
 	      $summary.innerText = getTotal().toFixed(2);
 	      $summaryPerPerson.innerText = getTotalPerPerson().toFixed(2);
 	    }
-	  }
-	})();
+	  };
+	}();
 
 	module.exports = Flatbeat;
-
 
 /***/ }
 /******/ ]);
