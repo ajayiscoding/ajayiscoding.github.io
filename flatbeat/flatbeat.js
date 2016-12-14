@@ -141,10 +141,10 @@ var Flatbeat =
 
 	  // свет в рублях
 	  var getLightRub = function getLightRub() {
-	    var lightCurrent = $lightCurrentField.value || 0;
-	    var lightLast = $lightLastField.value || 0;
+	    var current = $lightCurrentField && $lightCurrentField.value || 0;
+	    var last = $lightLastField && $lightLastField.value || 0;
 
-	    return parseFloat(lightCurrent - lightLast) * LIGHT;
+	    return parseFloat(current - last) * LIGHT;
 	  };
 
 	  // % комиссия банка, если есть
