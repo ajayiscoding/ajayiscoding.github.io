@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
   entry: "./core/app.js",
   output: {
@@ -13,5 +15,8 @@ module.exports = {
         exclude: /(node_modules|bower_components)/
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({ minimize: true })
+  ]
 };
